@@ -1,0 +1,24 @@
+<RCC>
+    <qresource prefix="/menu">
+        <file>images/表单组件-表格.png</file>
+        <file>images/打开.png</file>
+        <file>images/放大.png</file>
+        <file>images/关闭.png</file>
+        <file>images/官方版本.png</file>
+        <file>images/还原画布.png</file>
+        <file>images/全屏.png</file>
+        <file>images/神经.png</file>
+        <file>images/数据看板.png</file>
+        <file>images/缩小.png</file>
+        <file>images/文件夹.png</file>
+        <file>images/新建 .png</file>
+        <file>images/运行.png</file>
+        <file>images/icon_帮助文档.png</file>
+        <file>images/icon_保存.png</file>
+        <file>images/icon_添加.png</file>
+        <file>images/icon_loading.png</file>
+    </qresource>
+    <qresource prefix="/import">
+        <file>images/导入.png</file>
+    </qresource>
+</RCC>
