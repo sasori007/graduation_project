@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "struct.h"
 
 #include <QFile>
 #include <QTableWidget>
@@ -29,13 +30,11 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::on_action_3_triggered()
+void MainWindow::on_newFile_triggered()
 {
-    qApp->quit();
-}
-
-void MainWindow::on_action_triggered()
-{
+    chart.clear();
+    dataSum = 0;
+    attributionSum = 0;
     ui->tableWidget->clear();
     ui->tableWidget->hide();
     ui->importButton->show();
@@ -51,8 +50,8 @@ void MainWindow::on_importButton_clicked()
     }
 
     QFile* file = new QFile(fileName);
-    int dataSum = 0;        // 保存数据数
-    int attributionSum = 0; // 保存属性数
+    dataSum = 0;        // 保存数据数
+    attributionSum = 0; // 保存属性数
     QString head;
     QStringList hHeadList;
     QStringList vHeadList;
@@ -92,9 +91,9 @@ void MainWindow::on_importButton_clicked()
     for(int i = 0; i < attributionSum; ++i)
     {
         QComboBox* comBox = new QComboBox();
-        comBox->addItem("离散型数据");
-        comBox->addItem("连续型属性");
-        comBox->addItem("类别标签");
+        comBox->addItem(QString::fromStdString(columnAttribute[1]));
+        comBox->addItem(QString::fromStdString(columnAttribute[2]));
+        comBox->addItem(QString::fromStdString(columnAttribute[3]));
         ui->tableWidget->setCellWidget(0, i, comBox);
     }
 
@@ -110,8 +109,22 @@ void MainWindow::on_importButton_clicked()
     file->close();
 }
 
-void MainWindow::on_action_10_triggered()
+void MainWindow::on_ready_triggered()
 {
+    QString str = ui->tableWidget->item(1, 0)->text();
+
+}
+
+void MainWindow::on_closeFile_triggered()
+{
+    chart.clear();
+    dataSum = 0;
+    attributionSum = 0;
     ui->importButton->show();
     ui->tableWidget->hide();
+}
+
+void MainWindow::on_exit_triggered()
+{
+    qApp->quit();
 }

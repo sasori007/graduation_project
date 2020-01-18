@@ -111,11 +111,11 @@ QHeaderView::section {
     <property name="toolTipsVisible">
      <bool>false</bool>
     </property>
-    <addaction name="action"/>
+    <addaction name="newFile"/>
     <addaction name="action_2"/>
     <addaction name="action_S"/>
-    <addaction name="action_10"/>
-    <addaction name="action_3"/>
+    <addaction name="closeFile"/>
+    <addaction name="exit"/>
    </widget>
    <widget class="QMenu" name="menu_2">
     <property name="title">
@@ -128,6 +128,7 @@ QHeaderView::section {
     <property name="title">
      <string>分析(&amp;A)</string>
     </property>
+    <addaction name="ready"/>
     <addaction name="action_7"/>
     <addaction name="action_6"/>
    </widget>
@@ -149,7 +150,7 @@ QHeaderView::section {
     <string>toolBar</string>
    </property>
    <property name="allowedAreas">
-    <set>Qt::BottomToolBarArea|Qt::RightToolBarArea|Qt::TopToolBarArea</set>
+    <set>Qt::TopToolBarArea</set>
    </property>
    <property name="iconSize">
     <size>
@@ -166,16 +167,17 @@ QHeaderView::section {
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
-   <addaction name="action"/>
+   <addaction name="newFile"/>
    <addaction name="action_2"/>
    <addaction name="separator"/>
+   <addaction name="ready"/>
    <addaction name="action_7"/>
    <addaction name="action_6"/>
    <addaction name="separator"/>
    <addaction name="action_4"/>
    <addaction name="action_5"/>
   </widget>
-  <action name="action">
+  <action name="newFile">
    <property name="icon">
     <iconset resource="icon.qrc">
      <normaloff>:/menu/images/新建 .png</normaloff>:/menu/images/新建 .png</iconset>
@@ -211,7 +213,7 @@ QHeaderView::section {
     <enum>QAction::NormalPriority</enum>
    </property>
   </action>
-  <action name="action_3">
+  <action name="exit">
    <property name="text">
     <string>退出(&amp;X)</string>
    </property>
@@ -291,13 +293,22 @@ QHeaderView::section {
     <string>Ctrl+S</string>
    </property>
   </action>
-  <action name="action_10">
+  <action name="closeFile">
    <property name="icon">
     <iconset resource="icon.qrc">
      <normaloff>:/menu/images/关闭.png</normaloff>:/menu/images/关闭.png</iconset>
    </property>
    <property name="text">
     <string>关闭文件</string>
+   </property>
+  </action>
+  <action name="ready">
+   <property name="icon">
+    <iconset resource="icon.qrc">
+     <normaloff>:/menu/images/配置完成.png</normaloff>:/menu/images/配置完成.png</iconset>
+   </property>
+   <property name="text">
+    <string>配置完成</string>
    </property>
   </action>
  </widget>

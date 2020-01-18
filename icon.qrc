@@ -17,6 +17,7 @@
         <file>images/icon_保存.png</file>
         <file>images/icon_添加.png</file>
         <file>images/icon_loading.png</file>
+        <file>images/配置完成.png</file>
     </qresource>
     <qresource prefix="/import">
         <file>images/导入.png</file>
