@@ -26,6 +26,8 @@ private slots:
 
     void on_ready_triggered();
 
+    void on_analysis_triggered();
+
 private:
     Ui::MainWindow *ui;
     vector<vector<cell> >chart;
@@ -33,5 +35,7 @@ private:
     const string columnAttribute[4] = {"", "离散型属性", "连续型属性", "类别标签"};
     int dataSum;        // 保存数据数
     int attributionSum; // 保存属性数
+
+    bool toConfigure;   // 配置列属性标志
 };
 #endif // MAINWINDOW_H

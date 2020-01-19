@@ -129,7 +129,7 @@ QHeaderView::section {
      <string>分析(&amp;A)</string>
     </property>
     <addaction name="ready"/>
-    <addaction name="action_7"/>
+    <addaction name="analysis"/>
     <addaction name="action_6"/>
    </widget>
    <widget class="QMenu" name="menu_4">
@@ -171,7 +171,7 @@ QHeaderView::section {
    <addaction name="action_2"/>
    <addaction name="separator"/>
    <addaction name="ready"/>
-   <addaction name="action_7"/>
+   <addaction name="analysis"/>
    <addaction name="action_6"/>
    <addaction name="separator"/>
    <addaction name="action_4"/>
@@ -239,7 +239,10 @@ QHeaderView::section {
     <string>分析树</string>
    </property>
   </action>
-  <action name="action_7">
+  <action name="analysis">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
    <property name="icon">
     <iconset resource="icon.qrc">
      <normaloff>:/menu/images/运行.png</normaloff>:/menu/images/运行.png</iconset>
