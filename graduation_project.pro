@@ -16,12 +16,14 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    analysistree.cpp \
     dtnode.cpp \
     dtree.cpp \
     main.cpp \
     mainwindow.cpp
 
 HEADERS += \
+    analysistree.h \
     dtnode.h \
     dtree.h \
     mainwindow.h \

@@ -3,6 +3,7 @@
 #include "struct.h"
 #include "dtnode.h"
 #include "dtree.h"
+#include "analysistree.h"
 
 #include <QFile>
 #include <QTableWidget>
@@ -28,12 +29,20 @@ MainWindow::MainWindow(QWidget *parent)
 
     // 初始化配置标志
     toConfigure = false;
+    aTCreate = false;
+    tree = nullptr;
+    new_Tree = nullptr;
     ui->analysis->setEnabled(toConfigure);
+    ui->analysisTreeShow->setEnabled(aTCreate);
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
+    delete new_Tree;
+    delete tree;
+    tree = nullptr;
+    new_Tree = nullptr;
 }
 
 void MainWindow::on_newFile_triggered()
@@ -43,10 +52,16 @@ void MainWindow::on_newFile_triggered()
     dataSum = 0;
     attributionSum = 0;
     toConfigure = false;
+    aTCreate = false;
     ui->analysis->setEnabled(toConfigure);
+    ui->analysisTreeShow->setEnabled(aTCreate);
     ui->tableWidget->clear();
     ui->tableWidget->hide();
     ui->importButton->show();
+    delete new_Tree;
+    delete tree;
+    tree = nullptr;
+    new_Tree = nullptr;
 }
 
 void MainWindow::on_importButton_clicked()
@@ -251,10 +266,20 @@ void MainWindow::on_analysis_triggered()
         return ;
     }
     DTNode* p = new DTNode;
-    DTree tree(p);
+    tree = new DTree(p);
 
-    tree.createDTree(p, chart, label, dataSum);
-    tree.traverDTree(tree.returnRoot(), 0);
+    tree->createDTree(p, chart, label, dataSum);
+    //tree.traverDTree(tree.returnRoot(), 0);
+
+    if(!new_Tree)
+    {
+        new_Tree = new analysisTree(tree);
+    }
+    new_Tree->show();
+    aTCreate = true;
+    ui->analysisTreeShow->setEnabled(aTCreate);
+    QMessageBox::information(new_Tree, "分析完成", "已生成分析树，可点击查看！");
+
 }
 
 void MainWindow::on_closeFile_triggered()
@@ -264,14 +289,27 @@ void MainWindow::on_closeFile_triggered()
     dataSum = 0;
     attributionSum = 0;
     toConfigure = false;
+    aTCreate = false;
     ui->analysis->setEnabled(toConfigure);
+    ui->analysisTreeShow->setEnabled(aTCreate);
     ui->importButton->show();
     ui->tableWidget->hide();
+    delete tree;
+    delete new_Tree;
+    tree = nullptr;
+    new_Tree = nullptr;
+}
+
+void MainWindow::on_analysisTreeShow_triggered()
+{
+    new_Tree->show();
 }
 
 void MainWindow::on_exit_triggered()
 {
     qApp->quit();
+    delete tree;
+    delete new_Tree;
+    tree = nullptr;
+    new_Tree = nullptr;
 }
-
-
