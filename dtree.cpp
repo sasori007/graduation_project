@@ -1,4 +1,5 @@
 #include "dtree.h"
+#include "analysistree.h"
 
 void DTree::createDTree(DTNode *&node, vector<vector<cell> > chart, vector<string> label, int dataSum)
 {                                               // 输入表格，输出决策树；递归创建决策树
@@ -78,19 +79,46 @@ void DTree::destroyDTree(DTNode *&node)
     return;
 }
 
-void DTree::traverDTree(DTNode *node, int num)
+void DTree::traverDTree(DTNode *node, int k, QPainter* painter, int width, int whatNum, int pX)
 {
+    // 绘制根节点
     cout << node->value << "(";
-    for (int i = 0; i < node->childNum; ++i)
-        cout << node->childValue[i] << " ";
-    cout << ")" << endl;
-    ++num;
+    QRect r(width * whatNum + pX, 150 * (k + 1), width, 30);
+    QFont font;
+    font.setPointSize(13);
+    painter->setFont(font);
+    painter->drawText(r, Qt::AlignCenter, QString::fromStdString(node->value));
+
+    // 绘制连接线
     for (int i = 0; i < node->childNum; ++i)
     {
-        for (int j = 0; j < num; ++j)
+        int childWidth = width / node->childNum;
+        int start = 0;
+        QPoint cStart(width * whatNum + pX + width / 2, 150 * (k + 1) + 30);
+        QPoint cEnd(width * whatNum + pX + childWidth * i + childWidth / 2, 150 * (k + 2));
+        painter->drawLine(cStart, cEnd);
+
+        font.setPointSize(11);
+        painter->setFont(font);
+        if(cStart.x() == cEnd.x())
+            start = cStart.x();
+        else if(cStart.x() < cEnd.x())
+            start = cEnd.x() - ((cEnd.x() - cStart.x()) / 2);
+        else
+            start = (cStart.x() - cEnd.x()) / 2 + cEnd.x();
+        r.setRect(start - childWidth / 2, cStart.y() + (cEnd.y() - cStart.y()) / 2, childWidth, 20);
+        painter->drawText(r, Qt::AlignCenter, QString::fromStdString(node->childValue[i]));
+        cout << node->childValue[i] << " ";
+    }
+    cout << ")" << endl;
+    ++k;
+
+    for (int i = 0; i < node->childNum; ++i)
+    {
+        for (int j = 0; j < k; ++j)
             cout << "  ";
         cout << node->childValue[i] << "-->";
-        traverDTree(node->child[i], num);
+        traverDTree(node->child[i], k, painter, width / node->childNum, i, width * whatNum);
     }
     return;
 }

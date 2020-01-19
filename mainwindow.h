@@ -8,6 +8,9 @@ QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
 
+class analysisTree;
+class DTree;
+
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
@@ -28,6 +31,8 @@ private slots:
 
     void on_analysis_triggered();
 
+    void on_analysisTreeShow_triggered();
+
 private:
     Ui::MainWindow *ui;
     vector<vector<cell> >chart;
@@ -37,5 +42,9 @@ private:
     int attributionSum; // 保存属性数
 
     bool toConfigure;   // 配置列属性标志
+    bool aTCreate;      // 分析树建立标志
+
+    analysisTree* new_Tree;
+    DTree* tree;
 };
 #endif // MAINWINDOW_H
